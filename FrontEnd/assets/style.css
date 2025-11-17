@@ -29,7 +29,11 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+    height: 100%;
+    min-height: 100vh;
 	line-height: 1;
+    display: flex;
+    flex-direction: column;
 }
 ol, ul {
 	list-style: none;
@@ -58,8 +62,17 @@ header {
 	justify-content: space-between;
 	margin: 50px 0
 }
+
 section {
 	margin: 50px 0
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    flex: 1;
 }
 
 h1{
@@ -98,6 +111,23 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+.hide {
+    display: none;
+}
+
+#connected-banner {
+    position: fixed;
+    top : 0;
+    left : 0;
+    width : 100%;
+    background-color : black;
+    color : white;
+    text-align : center;
+    padding : 15px;
+    z-index : 1000;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -125,6 +155,74 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.portfolio-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 30px;
+	margin-bottom: 1em;
+}
+
+.portfolio-header h2 {
+	margin: 0;
+}
+
+.edit-button {
+	display: none;
+	align-items: center;
+	gap: 10px;
+	background: none;
+	border: none;
+	font-family: 'Work Sans';
+	font-size: 14px;
+	color: #000000;
+	cursor: pointer;
+	padding: 0;
+}
+
+.edit-button:hover {
+	opacity: 0.7;
+}
+
+.edit-button i {
+	font-size: 16px;
+}
+
+.categories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 20px;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    height: 37px;
+    top: 812px;
+    color: #1D6154;
+    background-color: white;
+    border: 1px solid #1D6154;
+    border-radius: 60px;
+    padding: 4px 19px;
+    box-sizing: border-box;
+    font-weight: bold
+}
+
+.category:hover {
+    color: white;
+    background-color: #1D6154;
+    cursor: pointer;
+}
+
+#category-active {
+    color: white;
+    background-color: #1D6154;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;
@@ -135,36 +233,52 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
-#contact {
+
+#login-error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.form-error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: none;
+    min-height: 20px;
+}
+
+.form {
 	width: 50%;
-margin: auto;
+    margin: auto;
 }
-#contact > * {
-	text-align: center;
 
+.form > * {
+	text-align: center;
 }
-#contact h2{
+.form h2{
 	margin-bottom: 20px;
 }
-#contact form {
+
+.form form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+.form input {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+.form label {
 	margin: 2em 0 1em 0;
 }
-#contact textarea {
+.form textarea {
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -185,4 +299,355 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 60px 100px 40px 100px;
+    border-radius: 10px;
+    width: 630px;
+    max-width: 90%;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#modalSlide1 {
+    display: flex;
+    flex-direction: column;
+}
+
+#modalSlide1 h2 {
+    text-align: center;
+    color: #1D6154;
+    font-family: 'Work Sans';
+    font-weight: 400;
+    font-size: 26px;
+    margin-bottom: 46px;
+}
+
+#modalSlide1 #backButton {
+    display: none;
+}
+
+.galleryModal {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 47px;
+    padding-bottom: 47px;
+}
+
+.workItem {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+}
+
+.galleryModal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.deleteWork {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-color: black;
+    color: white;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+.deleteWork:hover {
+    background-color: #333;
+}
+
+.deleteWork i {
+    color: white;
+}
+
+.addWorkButton {
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    background-color: #1D6154;
+    width: 237px;
+    height: 36px;
+    text-align: center;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 47px auto 0 auto;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.addWorkButton::before {
+    content: '';
+    position: absolute;
+    top: -47px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 1px;
+    background-color: #B3B3B3;
+}
+
+.addWorkButton:hover {
+    background-color: #0E4B3C;
+}
+
+.close {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 24px;
+    font-weight: 400;
+    color: black;
+    cursor: pointer;
+    z-index: 10000;
+    background: none;
+    border: none;
+    line-height: 1;
+    padding: 0;
+}
+
+.close:hover {
+    color: #666;
+}
+
+.close i {
+    font-size: 24px;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#backButton {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    display: none;
+    z-index: 10000;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+#backButton:hover {
+    color: #666;
+}
+
+#backButton::before {
+    content: "\f060";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.back-button-slide2 {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    z-index: 10000;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.back-button-slide2:hover {
+    color: #666;
+}
+
+.back-button-slide2::before {
+    content: "\f060";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.close-slide2 {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 24px;
+    font-weight: 400;
+    color: black;
+    cursor: pointer;
+    z-index: 10000;
+    background: none;
+    border: none;
+    line-height: 1;
+    padding: 0;
+}
+
+.close-slide2:hover {
+    color: #666;
+}
+
+.close-slide2 i {
+    font-size: 24px;
+}
+
+/* Styles pour le formulaire d'ajout de photo */
+.image-upload-container {
+    margin-bottom: 20px;
+}
+
+.image-preview-wrapper {
+    width: 100%;
+    height: 200px;
+    background-color: #E8F1F6;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 3px;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.upload-placeholder svg {
+    width: 76px;
+    height: 76px;
+}
+
+.upload-button {
+    background-color: #CBD6DC;
+    color: #306685;
+    padding: 10px 33px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #B9C5CC;
+}
+
+.upload-info {
+    color: #444444;
+    font-size: 10px;
+    margin: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #3D3D3D;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group select {
+    height: 51px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    border: none;
+    padding: 0 15px;
+    font-family: 'Work Sans';
+    font-size: 14px;
+    color: #3D3D3D;
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%233D3D3D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid #1D6154;
+}
+
+.addWorkButton:disabled {
+    background-color: #A7A7A7;
+    cursor: not-allowed;
+}
+
+#modalSlide2 {
+    display: flex;
+    flex-direction: column;
+}
+
+#modalSlide2 h2 {
+    text-align: center;
+    color: #1D6154;
+    font-family: 'Work Sans';
+    font-weight: 400;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
 

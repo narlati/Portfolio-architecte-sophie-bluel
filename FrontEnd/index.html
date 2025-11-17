@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
 	<meta charset="UTF-8">
 	<title>Sophie Bluel - Architecte d'intérieur</title>
@@ -7,6 +7,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -17,7 +18,7 @@
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<li>login</li>
+			<li class="login"> <a href="./login.html">login</a></li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
@@ -35,55 +36,61 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
-		<div class="gallery">
-			<figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-				<figcaption>Abajour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
+		<div class="portfolio-header">
+			<h2>Mes Projets</h2>
+			<button id="administrateGallery" class="edit-button">
+				<i class="fa-regular fa-pen-to-square"></i>
+				modifier
+			</button>
 		</div>
+        <div class="categories"></div>
+		<div class="gallery"></div>
 	</section>
-	<section id="contact">
+    <div id="myModal" class="modal">
+        <div id="modalSlide1" class="modal-content">
+            <button id="backButton"></button>
+            <button class="close"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Galerie photo</h2>
+            <div class="galleryModal"></div>
+        </div>
+        <div id="modalSlide2" class="modal-content">
+            <button id="backButton2" class="back-button-slide2"></button>
+            <button class="close-slide2"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Ajout photo</h2>
+            <div id="work-form-error-message" class="form-error-message"></div>
+            <form id="formAddWork">
+                <div class="image-upload-container">
+                    <div class="image-preview-wrapper">
+                        <img id="imagePreview" src="" alt="Aperçu de l'image" style="display: none;">
+                        <div id="uploadPlaceholder" class="upload-placeholder">
+                            <svg width="58" height="46" viewBox="0 0 58 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M57 39V7C57 3.68629 54.3137 1 51 1H7C3.68629 1 1 3.68629 1 7V39C1 42.3137 3.68629 45 7 45H51C54.3137 45 57 42.3137 57 39Z" stroke="#B9C5CC" stroke-width="2"/>
+                                <path d="M16 17.5L23.5 25L33.5 16L45 27.5" stroke="#B9C5CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="16.5" cy="12.5" r="3.5" fill="#B9C5CC"/>
+                            </svg>
+                            <label for="workImage" class="upload-button">+ Ajouter photo</label>
+                            <p class="upload-info">jpg, png : 4mo max</p>
+                        </div>
+                    </div>
+                    <input type="file" id="workImage" accept="image/jpeg, image/png" style="display: none;">
+                </div>
+                
+                <div class="form-group">
+                    <label for="workTitle">Titre</label>
+                    <input type="text" id="workTitle">
+                </div>
+                
+                <div class="form-group">
+                    <label for="workCategory">Catégorie</label>
+                    <select id="workCategory">
+                    </select>
+                </div>
+                
+                <button type="submit" class="validate-button addWorkButton">Valider</button>
+            </form>
+        </div>
+    </div>
+	<section id="contact" class="form">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
 		<form action="#" method="post">
@@ -105,5 +112,7 @@
 		</ul>
 	</nav>
 </footer>
+<script type="module" src="./assets/main/mainHomepage.js"></script>
+<script type="module" src="./assets/administrateGallery.js"></script>
 </body>
 </html>
